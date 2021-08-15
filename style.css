@@ -1,0 +1,18 @@
+
+.root{
+	max-width: 300px;
+	margin:10px;
+	padding:5px;
+}
+.urlListRoot{
+	max-width: 600px;
+	margin:10px;
+	padding:5px;
+	overflow:hidden;
+}
+.infoTitle{
+	font-weight:bold;
+}
+.badgeMargin{
+	margin-right:2px;
+}

@@ -25,14 +25,14 @@
   "commands": {
     "fill_link": {
       "suggested_key": {
-        "default": "Ctrl+Shift+8"
+        "default": "Ctrl+Shift+3"
       },
       "description": "open all link in new tab",
       "global": true
     },
 	 "open_link": {
       "suggested_key": {
-        "default": "Ctrl+Shift+0"
+        "default": "Ctrl+Shift+1"
       },
       "description": "open all link in new tab",
       "global": true

@@ -4,9 +4,10 @@
 	let allLanguage = await getAllLanguage();
 	let inputId = buildInputId(allLanguage, productId);
 	refreshStorage();
-	let allUrl = await getAllWebSite()
+	let allUrl = await getAllWebSite();
+	console.log(allUrl);
 	fillIdp(inputId, allUrl);
-	//openIdpText(productId);
+	openIdpText(productId);
 })();
 
 //-------------------------------------------------------------------------------------
@@ -17,10 +18,10 @@
  */
 function getProductId() {
 	let productIdTh = document.getElementsByClassName('productText')[0];
-	productIdTh = productIdTh.childNodes[1].childNodes[0].childNodes[1].innerHTML
+	productIdTh = productIdTh.childNodes[1].childNodes[0].childNodes[1].innerHTML;
 	let productId = productIdTh.substr(productIdTh.indexOf('= ') + 2);
-	productId = productId.replace(/\n/g,"");
-	productId = productId.replace(/\s/g,"");
+	productId = productId.replace(/\n/g, "");
+	productId = productId.replace(/\s/g, "");
 	return productId;
 }
 
@@ -39,7 +40,7 @@ async function getAllLanguage() {
 /**
 *
 */
-async function getPductIdFromS(){
+async function getPductIdFromS() {
 	return new Promise((resolver, reject) => {
 		chrome.storage.sync.get(
 			{ idplien_lng: '', }, resolver)
@@ -84,13 +85,18 @@ async function fillIdp(inpuId, productUrl) {
 		let urlTest = await checkUrl(productUrl[i]);
 		if (urlTest) {
 			let idp = document.getElementById(inpuId[i]);
-			idp.value = decodeURI(productUrl[i]);
+			let decodedUrl = decodeURI(productUrl[i]);
+			idp.value = decodedUrl;
 			idp.dispatchEvent(tempEvent);
 		} else {
 			alert(`Url "${productUrl[i]}" doesn't match`);
 		}
 
 	}
+}
+
+function removeUrlParam(url) {
+	return (url.indexOf("?") !== -1) ? url.substr(0, url.indexOf("?")) : url;
 }
 
 /**
@@ -112,7 +118,7 @@ function openIdpText(productId) {
  */
 function refreshStorage() {
 	chrome.storage.sync.get(
-		{ idplien_lng: ''},
+		{ idplien_lng: '' },
 		() => { })
 }
 

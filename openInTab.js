@@ -1,21 +1,20 @@
-(async ()=> {
+(async () => {
 	let allLanguage = await getAllLanguage();
-	let inputId = buildInputId(getProductId(),allLanguage);
+	let inputId = buildInputId(getProductId(), allLanguage);
 	let allUrl = getAllUrl(inputId);
 	updateStore(allUrl);
 })()
 
-function updateStore(productUrl){
-	chrome.storage.sync.set({productUrl})
+function updateStore(productUrl) {
+	chrome.storage.sync.set({ productUrl });
 }
 
-function getAllUrl(inputId){
+function getAllUrl(inputId) {
 	let allUrl = [];
-	for (let i=0; i<inputId.length;i++){
+	for (let i = 0; i < inputId.length; i++) {
 		let inputUrl = document.getElementById(inputId[i]).value;
 		allUrl.push(inputUrl);
 	}
-	console.log(allUrl);
 	return allUrl;
 }
 
@@ -38,17 +37,16 @@ function getProductId() {
 	let productIdTh = document.getElementsByClassName('productText')[0];
 	productIdTh = productIdTh.childNodes[1].childNodes[0].childNodes[1].innerHTML
 	let productId = productIdTh.substr(productIdTh.indexOf('= ') + 2);
-	productId = productId.replace(/\n/g,"");
-	productId = productId.replace(/\s/g,"");
+	productId = productId.replace(/\n/g, "");
+	productId = productId.replace(/\s/g, "");
 	return productId;
 }
 
-function buildInputId( productId,allLanguage) {
+function buildInputId(productId, allLanguage) {
 	let inputId = [];
-	
-	for (let i = 0;i<allLanguage.length;i++){
+
+	for (let i = 0; i < allLanguage.length; i++) {
 		inputId.push(`idp_${productId}_${allLanguage[i]}`);
 	}
-	console.log(inputId);
 	return inputId;
 }

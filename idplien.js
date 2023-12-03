@@ -10,6 +10,7 @@ chrome.commands.onCommand.addListener((command) => {
 	}
 });
 
+
 //-------------------------- CONTEXT MENU INIT ------------------------------------------------
 /*chrome.contextMenus.create({"title": "Add url", 
 							"contexts":["selection"],
